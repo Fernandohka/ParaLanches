@@ -25,28 +25,29 @@ public class ParaLanchesDbContext(DbContextOptions<ParaLanchesDbContext> options
             .HasForeignKey(e => e.InvitedById)
             .OnDelete(DeleteBehavior.NoAction);
         
-        builder.Entity<Lanche>()
-            .HasMany(e => e.Ingredientes)
-            .WithMany();
+        builder.Entity<Order>()
+            .HasOne(e => e.Lanches);
         
         builder.Entity<Order>()
-            .HasOne(e => e.Lanches)
-            .WithMany();
-        
-        builder.Entity<Order>()
-            .HasOne(e => e.Bebidas)
-            .WithMany();
+            .HasOne(e => e.Bebidas);
 
         builder.Entity<Review>()
-            .HasOne(e => e.Client)
-            .WithMany();
+            .HasOne(e => e.Client);
         
         builder.Entity<Review>()
-            .HasOne(e => e.Lanche)
-            .WithMany();
+            .HasOne(e => e.Lanche);
         
         builder.Entity<Review>()
-            .HasOne(e => e.Bebida)
-            .WithMany();
+            .HasOne(e => e.Bebida);
+
+        builder.Entity<FinalOrder>()
+            .HasMany(e => e.Orders)
+            .WithOne();
+        
+        builder.Entity<Order>()
+            .HasMany(e => e.Adicionais);
+        
+        builder.Entity<Order>()
+            .HasMany(e => e.Removidos);
     }
 }

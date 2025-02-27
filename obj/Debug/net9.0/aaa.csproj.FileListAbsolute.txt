@@ -167,3 +167,4 @@ C:\Users\disrct\Desktop\aaa\obj\Debug\net9.0\aaa.pdb
 C:\Users\disrct\Desktop\aaa\obj\Debug\net9.0\aaa.genruntimeconfig.cache
 C:\Users\disrct\Desktop\aaa\obj\Debug\net9.0\ref\aaa.dll
 C:\Users\disrct\Desktop\aaa\bin\Debug\net9.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\disrct\Desktop\aaa\obj\Debug\net9.0\aaa.sourcelink.json
