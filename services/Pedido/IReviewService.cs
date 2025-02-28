@@ -7,5 +7,5 @@ public interface IReviewService{
     Task<ICollection<Review>> GetReviewsByClientId(Guid ClientId);
     Task<ICollection<Review>> GetReviewsByProductId(Guid LancheId, Guid BebidaId);
     Task<Review> CreateReview(ReviewData data);
-    Boolean DeleteReview(Guid Id);
+    Task<Boolean> DeleteReview(Guid Id);
 }

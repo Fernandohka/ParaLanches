@@ -1,3 +1,5 @@
+using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using Server.Entities;
 using Server.Entities.Pedido;
 using Server.Models;
@@ -19,18 +21,44 @@ public class EFIngredienteService(ParaLanchesDbContext ctx) : IIngredienteServic
         return ing;
     }
 
-    public bool DeleteIngrediente(Guid Id)
+    public async Task<Boolean> DeleteIngrediente(Guid Id)
     {
-        throw new NotImplementedException();
+        var ingredientes = 
+            from ing in ctx.Ingredientes
+            where ing.Id == Id
+            select ing;
+        
+        var Ingrediente = ingredientes.FirstOrDefault();
+
+        if (Ingrediente is null)
+            return false;
+        
+        ctx.Remove(Ingrediente);
+        await ctx.SaveChangesAsync();
+
+        return true;
     }
 
-    public Task<Ingrediente> GetIngredienteById(Guid Id)
+    public async Task<Ingrediente?> GetIngredienteById(Guid Id)
     {
-        throw new NotImplementedException();
+        var ingredientes = 
+            from ing in ctx.Ingredientes
+            where ing.Id == Id
+            select ing;
+        
+        return await ingredientes.FirstOrDefaultAsync() switch
+        {
+            Ingrediente ingrediente => ingrediente,
+            _ => null
+        };
     }
 
-    public Task<ICollection<Ingrediente>> GetIngredientes()
+    public async Task<ICollection<Ingrediente>> GetIngredientes()
     {
-        throw new NotImplementedException();
+        var ingredientes =
+            from ing in ctx.Ingredientes
+            select ing;
+        
+        return await ingredientes.ToListAsync();
     }
 }

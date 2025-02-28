@@ -7,5 +7,5 @@ public interface ILancheService{
     Task<ICollection<Lanche>> GetLanches();
     Task<Lanche> GetLancheById(Guid Id);
     Task<Lanche> CreateLanche(LancheData data);
-    Boolean DeleteLanche(Guid Id);
+    Task<Boolean> DeleteLanche(Guid Id);
 }

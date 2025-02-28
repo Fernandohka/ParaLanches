@@ -12,6 +12,5 @@ public record LancheData(
     float Price,
     [Required]
     ICollection<Guid> IngredientesId,
-    ICollection<Guid> AdicionaisId,
     float Rating
 ) {}

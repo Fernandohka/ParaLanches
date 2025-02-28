@@ -35,6 +35,20 @@ builder.Services
     .AddScoped<IUserService, EFUserService>()
     .AddAuthorization();
 
+// builder.Services.AddCors(
+//     options => {
+//         options.AddPolicy("MainPolicy", policy => 
+//         {
+//             policy
+//                 .WithOrigins("http://localhost:4200")
+//                 .WithHeaders("*")
+//                 .WithMethods("*");
+//         });
+//     }
+// );
+
+// WebApplication app = builder.Build();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -42,6 +56,8 @@ if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
 }
+
+// app.UseCors("MainPolicy");
 
 app.UseAuthentication();
 app.UseAuthorization();
